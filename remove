@@ -3,9 +3,9 @@
 optionI=false
 optionV=false
 optionR=false
-  
+
 function removeFile() {
-  
+
  fileINode=$(ls -li "$1" | cut -d" " -f1)
  newFileName="$1"_"$fileINode"
 
@@ -13,9 +13,9 @@ function removeFile() {
  mv "$1" "$newFileName"
 
  currDirectory=$(pwd)/"$1"
- 
+
  mv "$newFileName" /home/$USER/deleted
- 
+
  # Adding the filename and path into hidden file
  echo -n "$newFileName"":" >> /home/$USER/.restore.info
  echo "$currDirectory" >> /home/$USER/.restore.info
@@ -63,18 +63,18 @@ done
 
  shift $(($OPTIND - 1))
 
- if [ ! -d /home/$USER/deleted ]
+if [ ! -d /home/$USER/deleted ]
  then
    mkdir /home/$USER/deleted
- fi
+fi
 
- if [ $# -lt 1 ]
+if [ $# -lt 1 ]
  then
    echo "remove: missing operand"
    exit 1
- fi
+fi
 
- for i in "$@"
+for i in "$@"
  do
 
    if [ $(basename "$i") = "remove" ]
